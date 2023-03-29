@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="static/reset.css">
+    <link rel="stylesheet" href="static/style.css">
+    <title>GraphQL</title>
+</head>
+<body>
+  <div class="navbarGradient-01 noEvent-01 h12px-01 fixed-01 w100p-01 zi9-01 t0-01 l0-01"></div>
+  <nav class="topbar w100">
+    <img src="static/z01logo.png">
+    <div class="nom-prenom" id="nom-prenom"></div>
+  </nav>
+
+  <div class="backg" ></div>
+  <div class="main">
+    <div class="welcome" id="welcome"></div>
+    <div class="buttons">
+      <div id="xpbutton" class="bouton" cursor="pointer" title="click to see details.">
+        Total XP :&nbsp
+      </div>
+      <div id="lvlbutton" class="bouton">
+        Level : 
+      </div>
+      <div id="auditbutton" class="bouton" title="click to see details.">
+        Audit ratio :&nbsp
+      </div>
+      <div id="skillsbutton" class="bouton" title="click to see details.">
+        Skills 
+      </div>
+    </div>
+    <svg id="xpsvg">
+      <defs>
+        <marker id="arrowheadxp" markerWidth="10" markerHeight="7" 
+        refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" />
+        </marker>
+        <marker id="yarrowheadxp" markerWidth="10" markerHeight="7" 
+        refX="0" refY="3.5" orient="auto-start-reverse">
+          <polygon points="0 0, 0 7,10 3.5" />
+        </marker>
+      </defs>
+      <polyline id="polyline" points="55,50 55,750 950,750" fill="none" shape-rendering="crispEdges" stroke="#444" stroke-width="2" marker-start="url(#yarrowheadxp)" marker-end="url(#arrowheadxp)"></polyline>
+      <text id="xaxis" x="450" y="770" fill="#000" font-family="Arial" font-size="14px" text-anchor="middle">Time</text>
+      <text class="yaxis" x="40" y="400" fill="#000" font-family="Arial" font-size="14px" text-anchor="middle" style="writing-mode: tb;">XP amount</text>
+      <text id="totalxp" x="400" y="200" fill="#000" font-family="Arial" font-size="32px" font-weight="700" text-anchor="middle"></text>
+      <g onclick="{document.querySelector('svg').setAttribute('visibility','hidden')}">
+        <circle id="closeX" cx="970" cy="20" r="20"  cursor="pointer">
+          <title>Click to close!</title>
+        </circle>
+        <path id="xcross" d="M 950,0 l 40,40 M 1000,-10 l -50,50" stroke="red" stroke-width="2" cursor="pointer"/>
+      </g>
+    </svg>
+    <svg id="auditsvg">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+        refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" />
+        </marker>
+        <marker id="yarrowhead" markerWidth="10" markerHeight="7" 
+        refX="0" refY="3.5" orient="auto-start-reverse">
+          <polygon points="0 0, 0 7,10 3.5" />
+        </marker>
+      </defs>
+      <polyline id="auditpolyline" points="55,50 55,750 950,750" fill="none" shape-rendering="crispEdges" stroke="#444" stroke-width="2" marker-start="url(#yarrowhead)" marker-end="url(#arrowhead)"></polyline>
+      <text id="auditxaxis" x="450" y="770" fill="#000" font-family="Arial" font-size="14px" text-anchor="middle">Time</text>
+      <text class="audityaxis" x="40" y="400" fill="#000" font-family="Arial" font-size="14px" text-anchor="middle" style="writing-mode: tb;">Audits</text>
+      <text id="audits" x="400" y="200" fill="#000" font-family="Arial" font-size="32px" font-weight="700" text-anchor="middle"></text>
+      <g onclick="{getElementById('auditsvg').setAttribute('visibility','hidden')}">
+        <circle id="auditcloseX" cx="970" cy="20" r="20"  cursor="pointer">
+          <title>Click to close!</title>
+        </circle>
+        <path id="auditxcross" d="M 950,0 l 40,40 M 1000,-10 l -50,50" stroke="red" stroke-width="2" cursor="pointer"/>
+      </g>
+    </svg>
+  </div>
+  <script src="script.js"></script>
+  <script src="display.js"></script>
+</body>
+</html>
