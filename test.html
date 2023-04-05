@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/reset.css">
+    <title>JWT connection</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container{
+            width: fit-content;
+            height: auto;
+            background: rgb(0, 204, 255);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        .loginbutton:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="logincontainer">
+        <div width="100%">
+            <label for="uname"><b>Username:</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+        </div>
+        <div width="100%">
+            <label for="psw"><b>Password:  </b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+        </div>
+        <button type="submit" id="loginbutton" cursor="pointer">Login</button>
+    </div>
+    <script crossorigin="anonymous" type="module" src="test.js">
+        
+        
+    </script>
+</body>
+</html>

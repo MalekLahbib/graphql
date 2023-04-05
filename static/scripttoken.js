@@ -1,24 +1,21 @@
 
-    showgraphQLdata()
+showgraphQLdata()
 
 function showgraphQLdata() {
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMzcyIiwiaWF0IjoxNjc5NjQ5Mjg1LCJpcCI6IjgwLjEyLjkyLjQ5LCAxNzIuMTguMC4yIiwiZXhwIjoxNjc5NzM1Njg1LCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciJdLCJ4LWhhc3VyYS1jYW1wdXNlcyI6Int9IiwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtaGFzdXJhLXVzZXItaWQiOiIxMzcyIiwieC1oYXN1cmEtdG9rZW4taWQiOiI3ZDJkYTJiMy0xMGU1LTRhOGYtYmJhYi02ZGUwM2IwZDY5MzQifX0.Fc5smlWRkuEWqSLAW3-Flp-gZhi32WzSip5wqU0zJ-U" 
+  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMzcyIiwiaWF0IjoxNjgwNTE2MDkxLCJpcCI6IjgwLjEyLjkyLjQ5LCAxNzIuMTguMC4yIiwiZXhwIjoxNjgwNjAyNDkxLCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsidXNlciJdLCJ4LWhhc3VyYS1jYW1wdXNlcyI6Int9IiwieC1oYXN1cmEtZGVmYXVsdC1yb2xlIjoidXNlciIsIngtaGFzdXJhLXVzZXItaWQiOiIxMzcyIiwieC1oYXN1cmEtdG9rZW4taWQiOiJmMjI1ZDhjYy1jZTA1LTRlM2YtYjc4Mi01YWEyYzk2MjU4ODkifX0.TGEWmUCeS05SucdK4HklkwO7hzG4aQmV7Ldup2Gf_Ds"
   const query = `
   query {
     user {
       firstName
       lastName
-      auditRatio
-      email
-      login
+      attrs
     }
     transaction(
       where: {_and: [{type: {_eq: "xp"}}, {eventId: {_eq: 32}}]}
       order_by: {createdAt: desc}
     ) {
       amount
-      path
-      eventId
+      type
       createdAt
       object {
         id

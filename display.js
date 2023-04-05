@@ -68,7 +68,7 @@ function displayxp(xptab){
     pathsvg.setAttribute('fill','none')
     xpsvg.appendChild(pathsvg)
     xpsvg.appendChild(gtotalxp)
-    // svg.appendChild(gdetailxp)
+    xpsvg.appendChild(gdetailxp)
     let totalxp = document.getElementById("totalxp")
     totalxp.setAttribute('x',width/2)
     totalxp.setAttribute('y',100)
@@ -85,6 +85,7 @@ function displayAudit(auditupTab,auditdownTab) {
   let maxy = Math.max(auditDown,auditUp)
   let pathd ="M"
   let path2 = "M"
+  let patha = "M"
   aupolyline = document.getElementById("auditpolyline")
   aupolyline.setAttribute('points',cx+','+(cy+50)+" "+cx+","+(auheight+60)+" " + (auwidth+50)+","+(auheight+60))
   xaxis = document.getElementById("auditxaxis")
@@ -170,6 +171,48 @@ function displayAudit(auditupTab,auditdownTab) {
     else path2 += 'L' + cx + ',' + cyd
     cx += marginx
   }
+  // display audit ratio
+  cx = 55
+  cyd = auheight+50
+  cy = 0
+  for (let i in auditTab){
+    let group = document.createElementNS(svgns,'g')
+    let text = document.createElementNS(svgns,'text')
+    let circled = document.createElementNS(svgns, 'circle')
+    let marginx = auwidth / auditTab.length
+    let auditUpratio = 0
+    let auditDownratio = 0
+    let ratio = 1
+    cyd -= auditTab[i].amount / maxy * auheight 
+    text.setAttribute("font-size","12px")
+    text.setAttribute("stroke-width","0") 
+    text.setAttribute("fill","var(--green)") 
+    text.setAttribute("text-anchor","middle")
+    text.setAttribute("x", cx)
+    text.setAttribute("y",cyd)
+    text.setAttribute("opacity","1")
+    let date = auditTab[i].createdAt.split('T')[0]
+    if (auditTab[i].type == "up") auditUpratio += auditTab[i].amount
+    else auditDownratio += auditTab[i].amount
+    if (auditUpratio != 0 && auditDownratio != 0) ratio = auditUpratio / auditDownratio
+    text.innerHTML = "<tspan text-anchor='middle' x=" + cx + " dy=" + -30 + ">"+ date + "</tspan><tspan text-anchor='middle' x=" + cx +" dy=" + 15 + ">+"+ ratio +" kB</tspan>"
+    circled.setAttribute('cx',cx)
+    circled.setAttribute('cy',cyd) 
+    circled.setAttribute('r',2) 
+    circled.setAttribute('fill', "transparent")
+    circled.setAttribute('stroke', "white") 
+    circled.setAttribute('stroke-width','2')
+    if (i!=0) {
+      group.classList="hoverlabel"
+      text.setAttribute("opacity","0")
+    }
+    group.appendChild(circled)
+    group.appendChild(text)
+    gauditratio.appendChild(group)
+    if (i==0) patha += cx + ',' + cyd
+    else patha += 'L' + cx + ',' + cyd
+    cx += marginx
+  }
   pathdown.setAttribute('d',pathd)
   pathdown.setAttribute('stroke',"red")
   pathdown.setAttribute('stroke-width',"2")
@@ -178,8 +221,13 @@ function displayAudit(auditupTab,auditdownTab) {
   pathup.setAttribute('stroke',"green")
   pathup.setAttribute('stroke-width',"2")
   pathup.setAttribute('fill','none')
+  pathratio.setAttribute('d',patha)
+  pathratio.setAttribute('stroke',"red")
+  pathratio.setAttribute('stroke-width',"2")
+  pathratio.setAttribute('fill','none')
   auditsvg.appendChild(pathdown)
   auditsvg.appendChild(pathup)
+  auditsvg.appendChild(pathratio)
 
   auditsvg.appendChild(gauditdown)
   auditsvg.appendChild(gauditup)
